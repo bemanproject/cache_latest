@@ -21,7 +21,7 @@ option(
 
 # [CMAKE.SKIP_EXAMPLES]
 option(
-    BEMAN_cache_latest_BUILD_EXAMPLES
+    BEMAN_CACHE_LATEST_BUILD_EXAMPLES
     "Enable building examples. Default: ON. Values: { ON, OFF }."
     ${PROJECT_IS_TOP_LEVEL}
 )

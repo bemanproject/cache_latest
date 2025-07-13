@@ -66,7 +66,7 @@ jobs:
           - description: "Macos Appleclang"
             os: macos-latest
             toolchain: "cmake/appleclang-toolchain.cmake"
-        cpp_version: [17, 20, 23, 26]
+        cpp_version: [23, 26]
         cmake_args:
           - description: "Default"
           - description: "TSan"
@@ -78,7 +78,7 @@ jobs:
               description: "Ubuntu GCC"
               os: ubuntu-latest
               toolchain: "cmake/gnu-toolchain.cmake"
-            cpp_version: 17
+            cpp_version: 23
             cmake_args:
               description: "Werror"
               args: "-DCMAKE_CXX_FLAGS='-Werror=all -Werror=extra'"
@@ -86,7 +86,7 @@ jobs:
               description: "Ubuntu GCC"
               os: ubuntu-latest
               toolchain: "cmake/gnu-toolchain.cmake"
-            cpp_version: 17
+            cpp_version: 23
             cmake_args:
               description: "Dynamic"
               args: "-DBUILD_SHARED_LIBS=on"
@@ -170,7 +170,7 @@ jobs:
           ninja --version
       - name: Configure CMake
         run: |
-          cmake -B build -S . -DCMAKE_CXX_STANDARD=17 ${{ matrix.args.arg }}
+          cmake -B build -S . -DCMAKE_CXX_STANDARD=23 ${{ matrix.args.arg }}
         env:
           CMAKE_GENERATOR: "Ninja Multi-Config"
       - name: Build Release
@@ -196,18 +196,12 @@ jobs:
         compilers:
           - class: GNU
             version: 14
-          - class: GNU
-            version: 13
-          - class: GNU
-            version: 12
           - class: LLVM
             version: 20
           - class: LLVM
             version: 19
           - class: LLVM
             version: 18
-          - class: LLVM
-            version: 17
     name: "Compiler: ${{ matrix.compilers.class }} ${{ matrix.compilers.version }}"
     steps:
       - uses: actions/checkout@v4
@@ -246,7 +240,7 @@ jobs:
           echo "CXX=$CXX" >> "$GITHUB_OUTPUT"
       - name: Configure CMake
         run: |
-          cmake -B build -S . -DCMAKE_CXX_STANDARD=20
+          cmake -B build -S . -DCMAKE_CXX_STANDARD=23
         env:
           CC: ${{ steps.install-compiler.outputs.CC }}
           CXX: ${{ steps.install-compiler.outputs.CXX }}
