@@ -20,10 +20,10 @@ class non_propagating_cache {
 
   public:
     non_propagating_cache() = default;
-    non_propagating_cache(const non_propagating_cache& other) {}
+    non_propagating_cache(const non_propagating_cache&) {}
     non_propagating_cache(non_propagating_cache&& other) { other.t_.reset(); }
 
-    non_propagating_cache& operator=(const non_propagating_cache& other) {
+    non_propagating_cache& operator=(const non_propagating_cache&) {
         t_.reset();
         return *this;
     }
