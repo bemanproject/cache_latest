@@ -1,6 +1,12 @@
 #ifndef BEMAN_CACHE_LATEST_H
 #define BEMAN_CACHE_LATEST_H
 
+// clang-format off
+#if __cplusplus < 202302L
+  #error "C++23 or later is required"
+#endif
+// clang-format on
+
 #include <ranges>
 #include <optional>
 #include <type_traits>
@@ -14,10 +20,10 @@ class non_propagating_cache {
 
   public:
     non_propagating_cache() = default;
-    non_propagating_cache(const non_propagating_cache& other) {}
+    non_propagating_cache(const non_propagating_cache&) {}
     non_propagating_cache(non_propagating_cache&& other) { other.t_.reset(); }
 
-    non_propagating_cache& operator=(const non_propagating_cache& other) {
+    non_propagating_cache& operator=(const non_propagating_cache&) {
         t_.reset();
         return *this;
     }

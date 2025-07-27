@@ -5,21 +5,22 @@ SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 -->
 
 <!-- markdownlint-disable-next-line line-length -->
-![Library Status](https://raw.githubusercontent.com/bemanproject/beman/refs/heads/main/images/badges/beman_badge-beman_library_under_development.svg) ![Continuous Integration Tests](https://github.com/bemanproject/cache_latest/actions/workflows/ci_tests.yml/badge.svg) ![Lint Check (pre-commit)](https://github.com/bemanproject/cache_latest/actions/workflows/pre-commit.yml/badge.svg)
+![Library Status](https://raw.githubusercontent.com/bemanproject/beman/refs/heads/main/images/badges/beman_badge-beman_library_under_development.svg) ![Continuous Integration Tests](https://github.com/bemanproject/cache_latest/actions/workflows/ci_tests.yml/badge.svg) [![Coverage](https://coveralls.io/repos/github/bemanproject/cache_latest/badge.svg?branch=main)](https://coveralls.io/github/bemanproject/cache_latest?branch=main) ![Standard Target](https://github.com/bemanproject/beman/blob/main/images/badges/cpp26.svg)
 
-`beman.cache_latest` is a minimal C++ library conforming to [The Beman Standard](https://github.com/bemanproject/beman/blob/main/docs/BEMAN_STANDARD.md).
-This can be used as a template for those intending to write Beman libraries.
-It may also find use as a minimal and modern  C++ project structure.
+<!-- markdownlint-disable-next-line line-length -->
+`beman.cache_latest` is a C++ ranges adaptor that caches the result of the last dereference of the underlying iterator. The reason for doing this is efficiency - specifically avoiding extra iterator dereferences.
 
-**Implements**: `std::cache_latest` proposed in [Standard Library Concepts (P3138R3)](https://wg21.link/P3138R3).
+The library conforms to [The Beman Standard](https://github.com/bemanproject/beman/blob/main/docs/BEMAN_STANDARD.md).
 
+<!-- markdownlint-disable-next-line line-length -->
+**Implements**: `std::views::cache_latest` proposed in [P3138 `views::cache_latest`](https://wg21.link/P3138) and in the working draft for C++26.
+
+<!-- markdownlint-disable-next-line line-length -->
 **Status**: [Under development and not yet ready for production use.](https://github.com/bemanproject/beman/blob/main/docs/BEMAN_LIBRARY_MATURITY_MODEL.md#under-development-and-not-yet-ready-for-production-use)
 
 ## Usage
 
-`std::cache_latest` is a range adaptor type that caches the result of the last dereference of the underlying iterator
-
-The following code snippet illustrates how we can achieve a default projection using `beman::cache_latest`:
+The following code snippet illustrates using `beman::cache_latest`:
 
 ```cpp
 #include <include/beman/cache_latest.hpp>
@@ -52,8 +53,8 @@ int main()
 
 This project requires at least the following to build:
 
-* C++17
-* CMake 3.25
+* C++23
+* CMake 3.28
 
 This project pulls [Google Test](https://github.com/google/googletest)
 from GitHub as a development dependency for its testing framework,
@@ -62,35 +63,12 @@ You can disable this behavior by setting cmake option
 [`BEMAN_CACHE_LATEST_BUILD_TESTS`](#beman_cache_latest_build_tests) to `OFF`
 when configuring the project.
 
-However,
-some examples and tests will not be compiled
-unless provided compiler support **C++20** or ranges capabilities enabled.
-
-> [!TIP]
->
-> In the logs you will be able to see if there are any examples that aren't enabled
-> due to compiler capabilities or the configured C++ version.
->
-> Below is an example:
->
-> ```txt
-> -- Looking for __cpp_lib_ranges
-> -- Looking for __cpp_lib_ranges - not found
-> CMake Warning at examples/CMakeLists.txt:12 (message):
->   Missing range support! Skip: identity_as_default_projection
->
->
-> Examples to be built: identity_direct_usage
-> ```
-
 ### Supported Platforms
 
 This project officially supports:
 
-* GNU GCC Compiler \[version 12-14\]
-* LLVM Clang++ Compiler \[version 17-20\]
-* AppleClang compiler on Mac OS
-* MSVC compiler on Windows
+* GNU GCC Compiler \[version 14+\]
+* LLVM Clang++ Compiler \[version 19-20\]
 
 > [!NOTE]
 >
@@ -218,11 +196,11 @@ ctest --test-dir build
 When configuring the project manually,
 you can pass an array of project specific CMake configs to customize your build.
 
-Project specific options are prefixed with `BEMAN_EXEMPLAR`.
+Project specific options are prefixed with `BEMAN_CACHE_LATEST`.
 You can see the list of available options with:
 
 ```bash
-cmake -LH | grep "BEMAN_EXEMPLAR" -C 2
+cmake -LH | grep "BEMAN_CACHE_LATEST" -C 2
 ```
 
 <details>
@@ -237,7 +215,7 @@ Values: { ON, OFF }.
 You can configure the project to have this option turned off via:
 
 ```bash
-cmake -B build -S . -DCMAKE_CXX_STANDARD=20 -DBEMAN_EXEMPLAR_BUILD_TESTS=OFF
+cmake -B build -S . -DCMAKE_CXX_STANDARD=20 -DBEMAN_CACHE_LATEST_BUILD_TESTS=OFF
 ```
 
 > [!TIP]
