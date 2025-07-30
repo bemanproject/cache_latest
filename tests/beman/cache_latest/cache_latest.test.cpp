@@ -1,5 +1,5 @@
 #include <beman/cache_latest/cache_latest.hpp>
-#include <gtest>
+#include <gtest/gtest.h>
 #include <ranges>
 #include <vector>
 
