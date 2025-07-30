@@ -99,7 +99,7 @@ class cache_latest_view<V>::iterator {
     std::ranges::iterator_t<V> current_; // exposition only
 
     constexpr explicit iterator(cache_latest_view& parent)
-        : current_(std::ranges::begin(parent.base_)), parent_(std::addressof(parent)) {}
+        : parent_(std::addressof(parent)), current_(std::ranges::begin(parent.base_)) {}
 
     friend class cache_latest_view<V>;
 
