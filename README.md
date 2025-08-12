@@ -10,13 +10,13 @@ SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 <!-- markdownlint-disable-next-line line-length -->
 `beman.cache_latest` is a C++ ranges adaptor that caches the result of the last dereference of the underlying iterator. The reason for doing this is efficiency - specifically avoiding extra iterator dereferences.
 
-The library conforms to [The Beman Standard](https://github.com/bemanproject/beman/blob/main/docs/BEMAN_STANDARD.md).
+The library conforms to [The Beman Standard](https://github.com/bemanproject/beman/blob/main/docs/beman_standard.md).
 
 <!-- markdownlint-disable-next-line line-length -->
 **Implements**: `std::views::cache_latest` proposed in [P3138 `views::cache_latest`](https://wg21.link/P3138) and in the working draft for C++26.
 
 <!-- markdownlint-disable-next-line line-length -->
-**Status**: [Under development and not yet ready for production use.](https://github.com/bemanproject/beman/blob/main/docs/BEMAN_LIBRARY_MATURITY_MODEL.md#under-development-and-not-yet-ready-for-production-use)
+**Status**: [Under development and not yet ready for production use.](https://github.com/bemanproject/beman/blob/main/docs/beman_library_maturity_model.md#under-development-and-not-yet-ready-for-production-use)
 
 ## Usage
 
@@ -186,7 +186,7 @@ ctest --test-dir build
 > [!IMPORTANT]
 >
 > Beman projects are
-> [passive projects](https://github.com/bemanproject/beman/blob/main/docs/BEMAN_STANDARD.md#cmake),
+> [passive projects](https://github.com/bemanproject/beman/blob/main/docs/beman_standard.md#cmake),
 > therefore,
 > you will need to specify C++ version via `CMAKE_CXX_STANDARD`
 > when manually configuring the project.
