@@ -9,8 +9,9 @@ target_sources(
     beman.cache_latest
     PUBLIC
         FILE_SET HEADERS
-        BASE_DIRS ${PROJECT_SOURCE_DIR}/include
-        FILES ${PROJECT_SOURCE_DIR}/include/beman/cache_latest/cache_latest.hpp
+            BASE_DIRS ${PROJECT_SOURCE_DIR}/include
+            FILES
+                ${PROJECT_SOURCE_DIR}/include/beman/cache_latest/cache_latest.hpp
 )
 
 set_target_properties(
@@ -21,8 +22,7 @@ set_target_properties(
 install(
     TARGETS beman.cache_latest
     EXPORT beman.cache_latest
-    DESTINATION
-    ${CMAKE_INSTALL_LIBDIR}$<$<CONFIG:Debug>:/debug>
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}$<$<CONFIG:Debug>:/debug>
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}$<$<CONFIG:Debug>:/debug>
     FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
