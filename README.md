@@ -65,17 +65,10 @@ when configuring the project.
 
 ### Supported Platforms
 
-This project officially supports:
-
-* GNU GCC Compiler \[version 14+\]
-* LLVM Clang++ Compiler \[version 19-20\]
-
-> [!NOTE]
->
-> Versions outside of this range would likely work as well,
-> especially if you're using a version above the given range
-> (e.g. HEAD/ nightly).
-> These development environments are verified using our CI configuration.
+| Compiler | Version | C++ Standards | Standard Library  |
+|----------|---------|---------------|-------------------|
+| GCC      | 15-14   | C++26, C++23  | libstdc++         |
+| Clang    | 20-19   | C++26, C++23  | libstdc++, libc++ |
 
 ## Development
 
