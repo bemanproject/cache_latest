@@ -280,6 +280,10 @@ This will generate such directory structure at `/opt/beman.cache_latest`.
     └── libbeman.cache_latest.a
 ```
 
+## License
+
+beman.cache_latest is licensed under the Apache License v2.0 with LLVM Exceptions.
+
 ## Contributing
 
 Please do!
