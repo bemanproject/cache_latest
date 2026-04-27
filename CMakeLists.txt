@@ -1,56 +1,54 @@
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.30...4.3)
 
 project(
     beman.cache_latest # CMake Project Name, which is also the name of the top-level
     # targets (e.g., library, executable, etc.).
-    DESCRIPTION "A Beman library cache_latest"
+    DESCRIPTION
+        "A C++ ranges adaptor that caches the result of the last dereference of the underlying iterator"
     LANGUAGES CXX
-    VERSION 1.0.0
+    VERSION 0.1.0
 )
-
-enable_testing()
 
 # [CMAKE.SKIP_TESTS]
 option(
     BEMAN_CACHE_LATEST_BUILD_TESTS
-    "Enable building tests and test infrastructure. Default: ON. Values: { ON, OFF }."
+    "Enable building tests and test infrastructure. Default: ${PROJECT_IS_TOP_LEVEL}. Values: { ON, OFF }."
     ${PROJECT_IS_TOP_LEVEL}
 )
 
 # [CMAKE.SKIP_EXAMPLES]
 option(
     BEMAN_CACHE_LATEST_BUILD_EXAMPLES
-    "Enable building examples. Default: ON. Values: { ON, OFF }."
+    "Enable building examples. Default: ${PROJECT_IS_TOP_LEVEL}. Values: { ON, OFF }."
     ${PROJECT_IS_TOP_LEVEL}
 )
 
-option(
-    BEMAN_CACHE_LATEST_INSTALL_CONFIG_FILE_PACKAGE
-    "Enable creating and installing a CMake config-file package. Default: ${PROJECT_IS_TOP_LEVEL}. Values: { ON, OFF }."
-    ${PROJECT_IS_TOP_LEVEL}
+# for find of beman_install_library and configure_build_telemetry
+include(infra/cmake/beman-install-library.cmake)
+include(infra/cmake/BuildTelemetryConfig.cmake)
+
+add_library(beman.cache_latest INTERFACE)
+add_library(beman::cache_latest ALIAS beman.cache_latest)
+
+target_sources(
+    beman.cache_latest
+    PUBLIC FILE_SET HEADERS BASE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
-include(FetchContent)
-include(GNUInstallDirs)
+set_target_properties(
+    beman.cache_latest
+    PROPERTIES VERIFY_INTERFACE_HEADER_SETS ${PROJECT_IS_TOP_LEVEL}
+)
+
+add_subdirectory(include/beman/cache_latest)
+
+beman_install_library(beman.cache_latest TARGETS beman.cache_latest)
+configure_build_telemetry()
 
 if(BEMAN_CACHE_LATEST_BUILD_TESTS)
-    # Fetch GoogleTest
-    FetchContent_Declare(
-        GTest
-        GIT_REPOSITORY https://github.com/google/googletest.git
-        GIT_TAG
-            6910c9d9165801d8827d628cb72eb7ea9dd538c5 # release-1.16.0
-        EXCLUDE_FROM_ALL
-    )
-    set(INSTALL_GTEST OFF) # Disable GoogleTest installation
-    FetchContent_MakeAvailable(GTest)
-endif()
-
-add_subdirectory(src/beman/cache_latest)
-
-if(BEMAN_CACHE_LATEST_BUILD_TESTS)
+    enable_testing()
     add_subdirectory(tests/beman/cache_latest)
 endif()
 
