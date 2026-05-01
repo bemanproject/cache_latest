@@ -70,7 +70,7 @@ You can disable building tests by setting CMake option `BEMAN_CACHE_LATEST_BUILD
 
 | Compiler | Version | C++ Standards | Standard Library  |
 |----------|---------|---------------|-------------------|
-| GCC      | 15-14   | C++26, C++23  | libstdc++         |
+| GCC      | 16-14   | C++26, C++23  | libstdc++         |
 | Clang    | 20-19   | C++26, C++23  | libstdc++, libc++ |
 
 ## Development
