@@ -98,6 +98,17 @@ For details on building beman.cache_latest without using a CMake preset, refer t
 
 ### Installation
 
+#### Vcpkg
+
+The preferred way to install cache_latest is via vcpkg. To do so, after installing vcpkg
+itself, you need to add support for the Beman project's [vcpkg
+registry](https://github.com/bemanproject/vcpkg-registry) by configuring a
+`vcpkg-configuration.json` file (which cache_latest [provides](vcpkg-configuration.json)).
+
+Then, simply run `vcpkg install beman-cache-latest`.
+
+#### Manual
+
 To install beman.cache_latest globally after building with the `gcc-release` preset, you can
 run:
 

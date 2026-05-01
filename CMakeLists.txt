@@ -3,8 +3,7 @@
 cmake_minimum_required(VERSION 3.30...4.3)
 
 project(
-    beman.cache_latest # CMake Project Name, which is also the name of the top-level
-    # targets (e.g., library, executable, etc.).
+    beman.cache_latest
     DESCRIPTION
         "A C++ ranges adaptor that caches the result of the last dereference of the underlying iterator"
     LANGUAGES CXX
