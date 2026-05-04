@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+
 #ifndef BEMAN_CACHE_LATEST_H
 #define BEMAN_CACHE_LATEST_H
 
