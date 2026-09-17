@@ -79,7 +79,7 @@ You can disable building examples by setting CMake option `BEMAN_CACHE_LATEST_BU
 | Compiler | Version | C++ Standards | Standard Library  |
 |----------|---------|---------------|-------------------|
 | GCC      | 16-14   | C++26, C++23  | libstdc++         |
-| Clang    | 20-19   | C++26, C++23  | libstdc++, libc++ |
+| Clang    | 23-19   | C++26, C++23  | libstdc++, libc++ |
 
 ## Development
 
